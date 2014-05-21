@@ -1,3 +1,20 @@
+## General Usage:
+##    
+##  > x <- matrix(1:16,4,4)
+##
+##  > matrixObject <- makeCacheMatrix(x)
+##
+##  > matrixObject.getInverse()
+##    [1] NULL
+##
+##  > cacheSolve(matrixObject)
+##    [1] ... Inverse Matrix Data
+##
+##  > matrixObject.getInverse()
+##    [1] ... Inverse Matrix Data
+##
+
+
 ## This function creates an object
 ## which stores a value (the matrix) and its inverse
 makeCacheMatrix <- function(x = matrix()) {
@@ -21,7 +38,7 @@ makeCacheMatrix <- function(x = matrix()) {
 	getInverse	<- function()		{inverse}
   
   # the return value is a group of named functions
-  # with access to the constructing functions data.
+  # with access to the constructing function's data.
   list(getMatrix = getMatrix,
        setMatrix = setMatrix, 
        getInverse = getInverse, 
