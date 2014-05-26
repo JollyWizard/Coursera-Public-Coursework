@@ -4,11 +4,18 @@
 ##
 ##  > matrixObject <- makeCacheMatrix(x)
 ##
-##  > matrixObject.getInverse()
+## ... and then:
+##
+##  > matrixObject.getInverse(lazy = FALSE)
 ##    [1] NULL
 ##
 ##  > cacheSolve(matrixObject)
 ##    [1] ... Inverse Matrix Data
+##
+##  > matrixObject.getInverse(lazy = FALSE)
+##    [1] ... Inverse Matrix Data
+##
+## ... or:
 ##
 ##  > matrixObject.getInverse()
 ##    [1] ... Inverse Matrix Data
@@ -34,24 +41,37 @@ makeCacheMatrix <- function(x = matrix()) {
 	#sets the inverse matrix value
 	setInverse	<- function(inv)	{inverse <<- inv}
 	
-	#gets the inverse matrix value
-	getInverse	<- function()		{inverse}
+	# Gets the inverse matrix value.
+  #
+  # If called without explicit parameter lazy = FALSE, 
+  # cacheSolve will be used.
+	getInverse	<- function(..., lazy = TRUE)		{
+    if (lazy) cacheSolve(this)
+    else inverse
+	}
   
-  # the return value is a group of named functions
-  # with access to the constructing function's data.
-  list(getMatrix = getMatrix,
+  # The return value is a group of named functions
+  # With access to the constructing function's environment data.
+  #
+  # It's stored as 'this' so it can pass itself to cacheSolve.
+  this <- list(getMatrix = getMatrix,
        setMatrix = setMatrix, 
        getInverse = getInverse, 
        setInverse = setInverse)
+  
+  this
 }
 
 
 ## This function returns the inverse of the input matrix
-## It gets the inverse stored in the object, if available,
-## otherwise, it calculates and stores the inverse on the object
-## before returning the calculated value.
+## It uses the inverse stored in the object, if available.
+## Otherwise, it calculates the inverse and stores it in 
+## the object before returning.
 cacheSolve <- function(x, ...) {
-	inv <- x$getInverse();
+  
+  # the lazy property is used to prevent infinite loop
+  # if called from x$getInverse()
+	inv <- x$getInverse(lazy=FALSE);
 	
 	if (is.null(inv)) {
 		inv <- solve(x$getMatrix())
