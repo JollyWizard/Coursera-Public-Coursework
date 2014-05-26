@@ -1,6 +1,6 @@
 ## General Usage:
 ##    
-##  > x <- matrix(1:16,4,4)
+##  > x <- matrix(sample(16), 4,4)
 ##
 ##  > matrixObject <- makeCacheMatrix(x)
 ##
@@ -25,7 +25,7 @@ makeCacheMatrix <- function(x = matrix()) {
 	#sets the matrix value (resets inverse)
 	setMatrix <- function(y) {
 		x <<- y
-		inverse <- NULL
+		setInverse(NULL)
 	}
 	
 	#gets the matrix value
