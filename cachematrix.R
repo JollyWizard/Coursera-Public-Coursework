@@ -46,8 +46,8 @@ makeCacheMatrix <- function(x = matrix()) {
   # If called without explicit parameter lazy = FALSE, 
   # cacheSolve will be used.
 	getInverse	<- function(..., lazy = TRUE)		{
-    if (lazy) cacheSolve(this)
-    else inverse
+		if (lazy) cacheSolve(this)
+		else inverse
 	}
   
   # The return value is a group of named functions
