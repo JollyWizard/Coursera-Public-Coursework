@@ -1,6 +1,8 @@
 #
-# I prepared a filtered file, which only has the relevant data
-# to quicken the parse time.  The data format is the same, just less rows.
+# I prepared a filtered file, which only has the relevant rows,
+# to quicken the parse time.  The data format is the same.
+# Filtering is included in the parsing, so you can swap out the file 
+# for the same results
 #
 assignmentDataFile  <- "household_power_consumption_filtered.txt"
 
