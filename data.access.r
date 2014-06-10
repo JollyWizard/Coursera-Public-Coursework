@@ -44,6 +44,9 @@ filterDateFormats <- function(data, lower, upper) {
   #add timestamp column
   data$DateTime <- as.POSIXct(paste(data$Date,data$Time))
   
+  filterDateLower <- as.Date("2007-02-01")
+  filterDateUpper <- as.Date("2007-02-03")
+  
   #filter for date range
   data <- (data[data$Date < filterDateUpper && data$Date >= filterDateLower,])
   

@@ -19,7 +19,7 @@ plot3 <- function() {
     lines(formula2, col="red")
     lines(formula3, col="blue")
     
-    #draw legent
+    #draw legend
     legend("topright"
            , legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
            , lty=c(1,1,1)
