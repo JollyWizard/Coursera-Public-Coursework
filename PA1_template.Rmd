@@ -170,12 +170,12 @@ head(data[data$dayType == "weekday",])
 head(data[data$dayType == "weekend",])
 ```
 
-* Now, we're going to rebuild the interval table.
-
 * So now we need to graph them:
 
 ```{r}
 library("lattice")
+
+dayType <- data$dayType
 
 xyplot( steps~interval | dayType, data=data, type="l", layout=c(1,2))
 ```
