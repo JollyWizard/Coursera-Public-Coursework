@@ -151,25 +151,31 @@ c( mean(data$steps) , median(data$steps))
 ```{r}
 
 isWeekend <- function(x) {
-  x == "Sunday" || x == "Saturday"
+  if( x == "Sunday" || x == "Saturday") "weekend" else "weekday";
 }
 
 data$day <- weekdays(data$date)
-data$weekend <- lapply(data$day, isWeekend)
+data$dayType <- lapply(data$day, isWeekend)
+
+#make it a factor
+data$dayType <- sapply(data$dayType, as.factor)
+
+print(lapply(data, class))
 ```
+
+* Tada: 
 
 ```{r}
-head(data[data$weekend == FALSE,])
-
-head(data[data$weekend == TRUE,])
+head(data[data$dayType == "weekday",])
+head(data[data$dayType == "weekend",])
 ```
 
-* So now we need to graph them
+* Now, we're going to rebuild the interval table.
+
+* So now we need to graph them:
 
 ```{r}
 library("lattice")
 
-trellis <- xyplot(steps~interval,data=data, type="l", )
-
-print(trellis)
+xyplot( steps~interval | dayType, data=data, type="l", layout=c(1,2))
 ```
