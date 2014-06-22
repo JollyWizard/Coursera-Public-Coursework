@@ -44,17 +44,14 @@ X, Y, and Z represent angular orientation; Magnitude (Mag) represents the scalar
 * tBodyAcc_std_X
 * tBodyAcc_std_Y
 * tBodyAcc_std_Z
-
 * tBodyAccMag_mean
 * tBodyAccMag_std
-
 * tGravityAcc_mean_X
 * tGravityAcc_mean_Y
 * tGravityAcc_mean_Z
 * tGravityAcc_std_X
 * tGravityAcc_std_Y
 * tGravityAcc_std_Z
-
 * tGravityAccMag_mean
 * tGravityAccMag_std 
 
@@ -70,7 +67,6 @@ X, Y, and Z represent angular orientation; Magnitude (Mag) represents the scalar
 * tBodyGyro_std_X
 * tBodyGyro_std_Y
 * tBodyGyro_std_Z
-
 * tBodyGyroMag_mean
 * tBodyGyroMag_std
 
@@ -86,17 +82,14 @@ Jerk is the derivative of acceleration; these fields were derived from their mea
 
 * tBodyAccJerkMag_mean
 * tBodyAccJerkMag_std
-
 * tBodyAccJerk_mean_X
 * tBodyAccJerk_mean_Y
 * tBodyAccJerk_mean_Z
 * tBodyAccJerk_std_X
 * tBodyAccJerk_std_Y
 * tBodyAccJerk_std_Z
-
 * tBodyGyroJerkMag_mean
 * tBodyGyroJerkMag_std
-
 * tBodyGyroJerk_mean_X
 * tBodyGyroJerk_mean_Y
 * tBodyGyroJerk_mean_Z
@@ -114,30 +107,24 @@ These are FFT transformations of the corresponding field that starts with 't' in
 * fBodyAcc_std_X
 * fBodyAcc_std_Y
 * fBodyAcc_std_Z
-
 * fBodyAccJerk_mean_X
 * fBodyAccJerk_mean_Y
 * fBodyAccJerk_mean_Z
 * fBodyAccJerk_std_X
 * fBodyAccJerk_std_Y
 * fBodyAccJerk_std_Z
-
 * fBodyGyro_mean_X
 * fBodyGyro_mean_Y
 * fBodyGyro_mean_Z
 * fBodyGyro_std_X
 * fBodyGyro_std_Y
 * fBodyGyro_std_Z
-
 * fBodyAccMag_mean
 * fBodyAccMag_std
-
 * fBodyBodyAccJerkMag_mean
 * fBodyBodyAccJerkMag_std
-
 * fBodyBodyGyroMag_mean
 * fBodyBodyGyroMag_std
-
 * fBodyBodyGyroJerkMag_mean
 * fBodyBodyGyroJerkMag_std
 

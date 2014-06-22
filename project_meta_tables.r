@@ -1,6 +1,6 @@
 
 features <- function() {
-  if (TRUE ||  !exists("feature_table")) {
+  if (!exists("feature_table")) {
     feature_table <<- read.table('features.txt'
                                  , sep=' '
                                  , header=FALSE
