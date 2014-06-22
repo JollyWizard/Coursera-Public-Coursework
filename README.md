@@ -11,7 +11,7 @@
 
 * provides loaders for the global metadata tables, features and activities, that identify columns and row types respectively.
 
-[project_datasets.R] {https://github.com/JiMinitaur/getdata-003-course-project/blob/master/project_datasets.r}
+[project_datasets.R] (https://github.com/JiMinitaur/getdata-003-course-project/blob/master/project_datasets.r)
 
 * provides loader functions which merge the datasets from their component files in their respective folders.
 
