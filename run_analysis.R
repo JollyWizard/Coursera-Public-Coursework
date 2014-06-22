@@ -12,7 +12,7 @@ run_analysis <- function () {
                          ,data=combo
                          ,FUN=mean
                          )
-  write.csv(agg_table, file="getdata-004-project-tidy-data-csv")
+  write.csv(agg_table, file="getdata-004-project-tidy-data.csv")
 }
 
 getCombinedData <- function() {

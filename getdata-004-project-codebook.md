@@ -10,7 +10,7 @@
 
 ## Data Field Groups
 
-# Identifiers
+### Identifiers
 
 These are qualitative identities.
 
@@ -18,19 +18,19 @@ These are qualitative identities.
 * **subject_id** : Integer = The human attached to the sensor 
 * **activity**   : String  = The activity type performed when the measurements were taken
 
-# Measurement Means
+### Measurements
 
 Each of these fields was averaged across their identifier columns using the original data set.  
 
 Each measurement group is subdivided b mean value (_mean_) and standard deviation (_std_).
 
-## Base Measurements
+#### Base Measurements
 
 Two sensor types (accelerometer and gyroscope) with 3 directions each (X,Y,Z) were measured for the base measurements, from which the others are derived.
 
 Measurements are in range [-1,1] representing the min and maximum values the sensor can read.
 
-### Accelerometer measurements
+#### Accelerometer measurements
 
 Measures linear acceleration.
 
@@ -58,12 +58,11 @@ X, Y, and Z represent angular orientation; Magnitude (Mag) represents the scalar
 * tGravityAccMag_mean
 * tGravityAccMag_std 
 
-### Gyroscope measurements
+#### Gyroscope measurements
 
 Measures angular acceleration.
 
 X, Y, and Z represent angular orientation; Magnitude (Mag) represents the scalar magnitude.
-
 
 * tBodyGyro_mean_X
 * tBodyGyro_mean_Y
@@ -75,13 +74,13 @@ X, Y, and Z represent angular orientation; Magnitude (Mag) represents the scalar
 * tBodyGyroMag_mean
 * tBodyGyroMag_std
 
-## Inferred Measurements
+### Inferred Measurements
 
 These fields are derived from the original measurements using relevant, deterministic formulas.
 
 The units of each of these measurements is related to their deriving formula.
 
-### Jerk
+#### Jerk
 
 Jerk is the derivative of acceleration; these fields were derived from their measurements with matching prefixes ( e.g. tbodyAccMag_mean matches tBodyAccJerkMag_mean )
 
@@ -105,7 +104,7 @@ Jerk is the derivative of acceleration; these fields were derived from their mea
 * tBodyGyroJerk_std_Y
 * tBodyGyroJerk_std_Z
 
-### Fourier Transforms
+#### Fourier Transforms
 
 These are FFT transformations of the corresponding field that starts with 't' instead of 'f'.
 
