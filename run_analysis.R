@@ -5,7 +5,6 @@ source('project_output.r')
 
 run_analysis <- function () {  
   combo <- getCombinedData();
-  ## I need to write the csv 
   
   agg_data  <- combo[,features_filtered()]
   agg_table <- aggregate(agg_data
@@ -13,7 +12,7 @@ run_analysis <- function () {
                          ,data=combo
                          ,FUN=mean
                          )
-  print(head(agg_table))
+  write.csv(agg_table, file="getdata-004-project-tidy-data-csv")
 }
 
 getCombinedData <- function() {
@@ -29,6 +28,15 @@ loadCombinedData <- function() {
   print("Combining Datasets")
   
   combinedData <<- rbind(test_data, train_data)
+}
+
+
+##
+## Filters the feature metatable the target measurement columns
+## (mean or std columns)
+##
+features_filtered <- function() {
+  cols <- grep("mean\\(\\)|std", features()$category )
 }
 
 run_analysis()
