@@ -1,0 +1,8 @@
+train/**
+test/**
+features.txt
+features_info.txt
+README.txt
+activity_labels.txt
+.RData
+.Rhistory
