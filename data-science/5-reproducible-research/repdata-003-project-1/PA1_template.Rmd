@@ -1,0 +1,181 @@
+repdata-003 : Peer Assesment 1 
+========================================================
+
+
+# Loading and preprocessing the data
+
+* The data is read from the csv file.
+
+```{r}
+activityData <- read.csv(file="activity.csv");
+
+head(activityData);
+```
+
+
+* Initially, $date is treated as a string factor.
+
+```{r}
+
+lapply(activityData, class)
+
+```
+
+* It's converted using basic functions.
+
+```{r}
+
+activityData$date <- as.Date(activityData$date)
+
+class(activityData$date)
+```
+
+* We're going to need data with and without nas
+
+```{r}
+
+dataFiltered <- activityData[!is.na(activityData$steps),]
+dataRaw      <- activityData
+
+```
+
+
+* We'll be 
+
+# What is mean total number of steps taken per day?
+
+
+```{r}
+data <- dataFiltered 
+
+hist(data$steps, col="green", main="Steps per day" , xlab="steps");
+```
+
+* Now for the concrete values:
+
+```{r}
+c( mean(data$steps) , median(data$steps))
+```
+
+# What is the average daily activity pattern?
+
+Looking at it in terms of intervals:
+
+* First we build a summary table:
+
+```{r}
+
+intervalData <- data.frame(interval = unique(activityData$interval));
+
+for (i in 1:nrow(intervalData)) {
+  subset <- data[data$interval == data[i,"interval"],];
+  intervalData[i,"mean_all_days"] <- mean(subset$steps)
+};
+
+head(intervalData);
+
+```
+
+* Then we plot it:
+
+```{r}
+plot(intervalData$mean_all_days
+     , type="l"
+     , xlab="interval"
+     , ylab="mean(steps per day"
+     );
+```
+
+* Let's get a concrete number for the interval with the largest mean:
+
+```{r}
+intervalData[which.max(intervalData$mean_all_days),]
+```
+
+# Inputing missing values
+
+Looks like all those NAs we filtered might cause problems.
+
+* Let's get a count:
+
+```{r}
+nrow(dataRaw[is.na(dataRaw$steps),])
+```
+
+* We're going to normalize the results in a new copy of the raw data.
+
+ 
+```{r}
+
+estimated <- data.frame(dataRaw[0,]);
+estimated <- rbind(estimated, dataRaw)
+
+head(estimated)
+```
+
+* We'll fill the NA with the interval mean from before working with the new data.
+
+```{r}
+
+for (i in 1:nrow(intervalData) ) {
+  interval <- intervalData[i,"interval"]
+  meanVal <- intervalData[i,"mean_all_days"]
+    
+  rows <- which(is.na(estimated$steps))
+  estimated[rows, "steps"] <- meanVal
+}
+
+data <- estimated
+
+head(data)
+```
+
+* Now we'll plot the new data:
+
+```{r}
+hist(data$steps, col="green", main="Steps per day (estimated)" , xlab="steps");
+```
+
+* And recalulate the core values
+
+```{r}
+c( mean(data$steps) , median(data$steps))
+```
+
+* Including all that missing data had a significant effect on the mean (~1/6 the original value)
+
+# Are there differences in activity patterns between weekdays and weekends?
+
+* To categorize the date, we'll have to process the data into a new column.
+
+```{r}
+
+isWeekend <- function(x) {
+  if( x == "Sunday" || x == "Saturday") "weekend" else "weekday";
+}
+
+data$day <- weekdays(data$date)
+data$dayType <- lapply(data$day, isWeekend)
+
+#make it a factor
+data$dayType <- sapply(data$dayType, as.factor)
+
+print(lapply(data, class))
+```
+
+* Tada: 
+
+```{r}
+head(data[data$dayType == "weekday",])
+head(data[data$dayType == "weekend",])
+```
+
+* So now we need to graph them:
+
+```{r}
+library("lattice")
+
+dayType <- data$dayType
+
+xyplot( steps~interval | dayType, data=data, type="l", layout=c(1,2))
+```
